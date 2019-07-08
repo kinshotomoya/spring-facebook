@@ -11,5 +11,5 @@ phases:
   post_build:
     commands:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-  artifacts:
-    files: imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json

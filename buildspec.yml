@@ -10,12 +10,13 @@ phases:
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
   build:
     commands:
-#      TODO: テスト実行処理も書く
+      #      TODO: テスト実行処理も書く
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '[{"name":"facebook-spring","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      # name is task name on ECS Cluster
+      - printf '[{"name":"facebook-app-task","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json

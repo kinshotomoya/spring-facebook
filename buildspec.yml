@@ -17,6 +17,6 @@ phases:
     commands:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       # name is task name on ECS Cluster
-      - printf '[{"name":"facebook-app-task","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"facebook-app-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
